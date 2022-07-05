@@ -2,14 +2,14 @@
 
 This is todo Application using Redux and React.
 
-# Live Link [CLick Here](https://redux-todo-app-v1.herokuapp.com/)
+## Live Link [CLick Here](https://redux-todo-app-v1.herokuapp.com/)
 
 ## Redux
 
 []: # Language: markdown
 []: # Path: README.md
 
-# Using Technologies
+## Using Technologies
 
 - ReactJs
 - Redux
@@ -17,11 +17,11 @@ This is todo Application using Redux and React.
 - styled-components
 - axios
 
-# Features
+## Features
 
 - Add todo
 
-# Demo Screenshot
+## Demo Screenshot
 
 ![ImageScreenshot](./preview.png)
 
