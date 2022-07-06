@@ -1,7 +1,10 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import TodoRow from "./TodoRow";
 
 const TodoList = () => {
+  const todoList = useSelector((state) => state);
+  console.log(todoList);
   return (
     <TodoListStyled>
       <div className="table-action"></div>
@@ -19,10 +22,9 @@ const TodoList = () => {
             </tr>
           </thead>
           <tbody>
-            <TodoRow />
-            <TodoRow />
-            <TodoRow />
-            <TodoRow />
+            {todoList.map((todo) => (
+              <TodoRow key={todo.id} {...todo} />
+            ))}
           </tbody>
         </table>
       </div>

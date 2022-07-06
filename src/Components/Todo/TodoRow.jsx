@@ -1,11 +1,11 @@
-const TodoRow = () => {
+const TodoRow = ({ id, date, text, completed }) => {
   return (
     <tr>
-      <td>1</td>
-      <td>13 Jan, 2022</td>
-      <td>Bangladesh Hero</td>
+      <td>{id}</td>
+      <td>{date}</td>
+      <td>{text}</td>
       <td>
-        <small>Pending.</small>
+        <small>{completed ? "Completed" : "Pending.."}</small>
       </td>
       <td>
         <button className="isComplete-btn">✔️</button>
