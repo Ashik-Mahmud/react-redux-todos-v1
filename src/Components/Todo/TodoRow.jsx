@@ -17,15 +17,13 @@ const TodoRow = ({ id, date, text, isDone, setIsUpdate, ind }) => {
   };
 
   /* Handle Done Todo */
-  const handleDoneTodo = (id) => {
-    const isConfirm = window.alert("Are you sure to done this todo?");
+  const handleDone = (id) => {
+    const isConfirm = window.confirm("Are you sure to done this todo?");
     if (isConfirm) {
       dispatch(todoDoneAction(id));
-      console.log(id);
     }
   };
 
-  console.log(isDone);
   return (
     <tr className={isDone ? "done" : ""}>
       <td>{ind + 1}</td>
@@ -36,7 +34,7 @@ const TodoRow = ({ id, date, text, isDone, setIsUpdate, ind }) => {
       </td>
       <td>
         <button
-          onClick={() => handleDoneTodo(id)}
+          onClick={() => handleDone(id)}
           className={`done-btn ${isDone ? "pointer-none" : ""}`}
         >
           ✔️

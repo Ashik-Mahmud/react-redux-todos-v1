@@ -4,7 +4,6 @@ import TodoRow from "./TodoRow";
 
 const TodoList = ({ setIsUpdate }) => {
   const todoList = useSelector((state) => state).sort((a, b) => a.id - b.id);
-  console.log(todoList);
   return (
     <TodoListStyled>
       <div className="table-action"></div>

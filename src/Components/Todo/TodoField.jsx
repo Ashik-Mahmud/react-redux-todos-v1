@@ -44,7 +44,7 @@ const TodoField = ({ isUpdate, setIsUpdate }) => {
   return (
     <TodoFieldStyled>
       {isUpdate.id ? (
-        <div className="todoField">
+        <div className="todoField update-mode">
           <input
             type="text"
             placeholder="Update Todo"
@@ -100,6 +100,22 @@ const TodoFieldStyled = styled.div`
       cursor: pointer;
       border-radius: 6px;
     }
+  }
+  .update-mode {
+    position: relative;
+    border: 1px solid #19c281;
+  }
+  .update-mode::after {
+    content: "Update Mode";
+    position: absolute;
+    right: 0px;
+    bottom: -28px;
+    font-size: 0.8rem;
+    background: #19c281;
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    padding: 0.3rem;
+    border-radius: 0px 0px 5px 5px;
   }
 `;
 export default TodoField;
