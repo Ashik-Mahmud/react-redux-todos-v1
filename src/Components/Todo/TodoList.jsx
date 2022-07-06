@@ -4,9 +4,21 @@ import TodoRow from "./TodoRow";
 
 const TodoList = ({ setIsUpdate }) => {
   const todoList = useSelector((state) => state).sort((a, b) => a.id - b.id);
+  const incompleteToDos = todoList.filter((todo) => todo.isDone === false);
+  const completeToDos = todoList.filter((todo) => todo.isDone === true);
+
   return (
     <TodoListStyled>
-      <div className="table-action"></div>
+      <div className="table-action">
+        <ul>
+          <li>
+            Incomplete Todo <strong>{incompleteToDos.length}</strong>
+          </li>
+          <li>
+            Complete Todo <strong>{completeToDos.length}</strong>
+          </li>
+        </ul>
+      </div>
       <div className="table-container">
         {todoList.length > 0 ? (
           <table>
@@ -49,11 +61,29 @@ const TodoList = ({ setIsUpdate }) => {
 const TodoListStyled = styled.div`
   position: relative;
   margin: 1rem 0rem;
+  .table-action {
+    position: relative;
+    ul {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 2rem;
+      li {
+        background: #f8f8f8;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+      }
+    }
+  }
   .table-container {
     position: relative;
     overflow: hidden;
     overflow-x: auto;
     width: 100%;
+
     table {
       width: 100%;
       border-collapse: collapse;
