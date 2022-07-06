@@ -3,11 +3,8 @@ import styled from "styled-components";
 import TodoRow from "./TodoRow";
 
 const TodoList = ({ setIsUpdate }) => {
-  const todoList = useSelector((state) => state);
-
-  const sortedTodoList = todoList.sort((a, b) => a.id - b.id);
-
-  console.log(sortedTodoList);
+  const todoList = useSelector((state) => state).sort((a, b) => a.id - b.id);
+  console.log(todoList);
   return (
     <TodoListStyled>
       <div className="table-action"></div>
@@ -86,6 +83,13 @@ const TodoListStyled = styled.div`
     h3 {
       margin: 0rem;
     }
+  }
+  .done {
+    opacity: 0.6;
+    background: #f8f8f8;
+  }
+  .pointer-none {
+    pointer-events: none;
   }
 `;
 export default TodoList;

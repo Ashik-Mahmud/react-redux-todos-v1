@@ -18,7 +18,7 @@ const TodoField = ({ isUpdate, setIsUpdate }) => {
         id: toDos.length + 1,
         text: todo,
         date: new Date().toLocaleString(),
-        completed: false,
+        isDone: false,
       })
     );
     setTodo("");
@@ -34,7 +34,7 @@ const TodoField = ({ isUpdate, setIsUpdate }) => {
         id: isUpdate.id,
         text: updateText,
         date: new Date().toLocaleString(),
-        completed: false,
+        isDone: false,
       })
     );
     setUpdateText("");

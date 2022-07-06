@@ -1,10 +1,15 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO } from "../Constant/TodoConstant";
+import {
+  ADD_TODO,
+  DELETE_TODO,
+  EDIT_TODO,
+  TODO_DONE,
+} from "../Constant/TodoConstant";
 
 const initTodo = [
   {
     id: 1,
     text: "Learn React",
-    completed: false,
+    isDone: true,
     date: new Date().toLocaleString(),
   },
 ];
@@ -27,6 +32,14 @@ const TodoReducer = (state = initTodo, action) => {
         (todo) => todo.id !== action.payload
       );
       return totalTodoExceptDeleted;
+
+    case TODO_DONE:
+      const allTodoExceptDone = state.filter(
+        (todo) => todo.id !== action.payload
+      );
+      const todoDone = state.find((todo) => todo.id === action.payload);
+      todoDone.isDone = true;
+      return [...allTodoExceptDone, todoDone];
 
     default:
       return state;

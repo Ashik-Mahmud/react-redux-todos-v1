@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 
 const TodoContainer = () => {
   const [isUpdate, setIsUpdate] = useState({});
-  console.log(isUpdate);
+
   return (
     <TodoStyled>
       <TodoField isUpdate={isUpdate} setIsUpdate={setIsUpdate} />

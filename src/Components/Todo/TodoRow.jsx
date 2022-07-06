@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../../Services/Actions/TodoAction";
+import { deleteTodo, todoDoneAction } from "../../Services/Actions/TodoAction";
 import store from "../../store";
-const TodoRow = ({ id, date, text, completed, setIsUpdate, ind }) => {
+const TodoRow = ({ id, date, text, isDone, setIsUpdate, ind }) => {
   const dispatch = useDispatch(store);
   /* Handle Todo Delete  */
   const handleDeleteTodo = (id) => {
@@ -16,21 +16,36 @@ const TodoRow = ({ id, date, text, completed, setIsUpdate, ind }) => {
     setIsUpdate({ id, text });
   };
 
+  /* Handle Done Todo */
+  const handleDoneTodo = (id) => {
+    const isConfirm = window.alert("Are you sure to done this todo?");
+    if (isConfirm) {
+      dispatch(todoDoneAction(id));
+      console.log(id);
+    }
+  };
+
+  console.log(isDone);
   return (
-    <tr>
+    <tr className={isDone ? "done" : ""}>
       <td>{ind + 1}</td>
       <td>{date}</td>
       <td>{text}</td>
       <td>
-        <small>{completed ? "Completed" : "Pending.."}</small>
+        <small>{isDone ? "Completed" : "Pending.."}</small>
       </td>
       <td>
-        <button className="isComplete-btn">✔️</button>
+        <button
+          onClick={() => handleDoneTodo(id)}
+          className={`done-btn ${isDone ? "pointer-none" : ""}`}
+        >
+          ✔️
+        </button>
       </td>
       <td>
         <button
           onClick={() => handleTodoUpdate({ id, text })}
-          className="edit-btn"
+          className={`edit-btn ${isDone ? "pointer-none" : ""}`}
         >
           ✏️
         </button>

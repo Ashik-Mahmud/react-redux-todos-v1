@@ -1,8 +1,8 @@
 import {
   ADD_TODO,
-  COMPLETE_TODO,
   DELETE_TODO,
   EDIT_TODO,
+  TODO_DONE,
 } from "../Constant/TodoConstant";
 
 export const addTodo = (todo) => {
@@ -26,8 +26,9 @@ export const deleteTodo = (todoId) => {
   };
 };
 
-export const completeTodo = () => {
+export const todoDoneAction = (todoId) => {
   return {
-    type: COMPLETE_TODO,
+    type: TODO_DONE,
+    payload: todoId,
   };
 };
