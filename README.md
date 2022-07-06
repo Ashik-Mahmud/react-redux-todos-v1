@@ -2,7 +2,7 @@
 
 This is todo Application using Redux and React.
 
-## Live Link [CLick Here](https://redux-todo-app-v1.herokuapp.com/)
+## Live Link [CLick Here](https://redux-todos-v1.netlify.app/)
 
 ## Redux
 
