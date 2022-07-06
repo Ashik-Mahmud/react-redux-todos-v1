@@ -1,4 +1,15 @@
+import { useDispatch } from "react-redux";
+import { deleteTodo } from "../../Services/Actions/TodoAction";
+import store from "../../store";
 const TodoRow = ({ id, date, text, completed }) => {
+  const dispatch = useDispatch(store);
+  /* Handle Todo Delete  */
+  const handleDeleteTodo = (id) => {
+    const isConfirm = window.confirm("Are you sure to delete this todo?");
+    if (isConfirm) {
+      dispatch(deleteTodo(id));
+    }
+  };
   return (
     <tr>
       <td>{id}</td>
@@ -14,7 +25,9 @@ const TodoRow = ({ id, date, text, completed }) => {
         <button className="edit-btn">✏️</button>
       </td>
       <td>
-        <button className="delete-btn">❌</button>
+        <button onClick={() => handleDeleteTodo(id)} className="delete-btn">
+          ❌
+        </button>
       </td>
     </tr>
   );
