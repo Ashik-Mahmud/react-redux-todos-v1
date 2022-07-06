@@ -5,7 +5,7 @@ const initTodo = [
     id: 1,
     text: "Learn React",
     completed: false,
-    date: new Date().toLocaleDateString(),
+    date: new Date().toLocaleString(),
   },
 ];
 

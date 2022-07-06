@@ -1,11 +1,38 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
+import { addTodo } from "../../Services/Actions/TodoAction";
+import store from "../../store";
 const TodoField = () => {
+  const [todo, setTodo] = useState("");
+  const dispatch = useDispatch(store);
+  const toDos = useSelector((state) => state);
+  /* Handle Todo  */
+  const handleTodo = () => {
+    if (!todo) return alert("Please enter todo");
+    const isHas = toDos.find((todoText) => todoText.text === todo);
+    if (isHas) return alert("Todo already exists");
+
+    dispatch(
+      addTodo({
+        id: Math.floor(Math.random() * 100000) + 4,
+        text: todo,
+        date: new Date().toLocaleString(),
+        completed: false,
+      })
+    );
+    setTodo("");
+  };
   return (
     <TodoFieldStyled>
       <div className="todoField">
-        <input type="text" placeholder="Add Todo" />
-        <button>Add</button>
+        <input
+          type="text"
+          onChange={(e) => setTodo(e.target.value)}
+          value={todo}
+          placeholder="Add Todo"
+        />
+        <button onClick={handleTodo}>Add</button>
       </div>
     </TodoFieldStyled>
   );
