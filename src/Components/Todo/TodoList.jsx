@@ -2,9 +2,12 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import TodoRow from "./TodoRow";
 
-const TodoList = () => {
+const TodoList = ({ setIsUpdate }) => {
   const todoList = useSelector((state) => state);
-  console.log(todoList);
+
+  const sortedTodoList = todoList.sort((a, b) => a.id - b.id);
+
+  console.log(sortedTodoList);
   return (
     <TodoListStyled>
       <div className="table-action"></div>
@@ -23,8 +26,13 @@ const TodoList = () => {
               </tr>
             </thead>
             <tbody>
-              {todoList.map((todo) => (
-                <TodoRow key={todo.id} {...todo} />
+              {todoList.map((todo, ind) => (
+                <TodoRow
+                  key={todo.id}
+                  {...todo}
+                  setIsUpdate={setIsUpdate}
+                  ind={ind}
+                />
               ))}
             </tbody>
           </table>

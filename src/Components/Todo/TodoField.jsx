@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { addTodo } from "../../Services/Actions/TodoAction";
+import { addTodo, editTodo } from "../../Services/Actions/TodoAction";
 import store from "../../store";
-const TodoField = () => {
+const TodoField = ({ isUpdate, setIsUpdate }) => {
   const [todo, setTodo] = useState("");
   const dispatch = useDispatch(store);
   const toDos = useSelector((state) => state);
@@ -15,7 +15,7 @@ const TodoField = () => {
 
     dispatch(
       addTodo({
-        id: Math.floor(Math.random() * 100000) + 4,
+        id: toDos.length + 1,
         text: todo,
         date: new Date().toLocaleString(),
         completed: false,
@@ -23,17 +23,47 @@ const TodoField = () => {
     );
     setTodo("");
   };
+
+  /* Update TODO  */
+  const [updateText, setUpdateText] = useState("");
+  const updateTodo = () => {
+    if (!updateText) return alert("Please enter todo");
+
+    dispatch(
+      editTodo({
+        id: isUpdate.id,
+        text: updateText,
+        date: new Date().toLocaleString(),
+        completed: false,
+      })
+    );
+    setUpdateText("");
+    setIsUpdate({});
+  };
+
   return (
     <TodoFieldStyled>
-      <div className="todoField">
-        <input
-          type="text"
-          onChange={(e) => setTodo(e.target.value)}
-          value={todo}
-          placeholder="Add Todo"
-        />
-        <button onClick={handleTodo}>Add</button>
-      </div>
+      {isUpdate.id ? (
+        <div className="todoField">
+          <input
+            type="text"
+            placeholder="Update Todo"
+            onChange={(event) => setUpdateText(event.target.value)}
+            value={updateText || isUpdate.text}
+          />
+          <button onClick={updateTodo}>Update</button>
+        </div>
+      ) : (
+        <div className="todoField">
+          <input
+            type="text"
+            onChange={(e) => setTodo(e.target.value)}
+            value={todo}
+            placeholder="Add Todo"
+          />
+          <button onClick={handleTodo}>Add</button>
+        </div>
+      )}
     </TodoFieldStyled>
   );
 };
